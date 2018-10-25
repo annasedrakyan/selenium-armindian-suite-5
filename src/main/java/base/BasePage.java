@@ -1,6 +1,7 @@
 package base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -43,5 +44,22 @@ public abstract class BasePage {
         click(find(location));
     }
 
+    public boolean isDisplayed(WebElement element) {
+        try {
+            return element.isDisplayed();
+        }
+        catch (NoSuchElementException  e) {
+            return false;
+        }
+    }
+
+    public boolean isDisplayed(By location) {
+        try {
+            return find(location).isDisplayed();
+        }
+        catch (NoSuchElementException  e) {
+            return false;
+        }
+    }
 
 }
